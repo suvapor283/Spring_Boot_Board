@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -19,5 +20,13 @@ public class QuestionController {
         model.addAttribute("questionList", questionList);  // Model 객체에 값을 담아 두면 템플릿에서 사용 가능
 
         return "question_list";
+    }
+
+    @GetMapping("/question/detail/{id}")
+    public String detail(Model model, @PathVariable("id") Integer id) {
+        Question question = this.questionService.getQuestion(id);
+        model.addAttribute("question", question);
+
+        return "question_detail";
     }
 }
