@@ -2,7 +2,6 @@ package com.mysite.sbb;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 @RequiredArgsConstructor  // 해당 속성을 필요로 하는 생성자가 자동으로 생성
 @Getter  // final을 적용하면 속성값을 변경할 수 없기 때문에 @Setter는 의미가 없다.
