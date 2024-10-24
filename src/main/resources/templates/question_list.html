@@ -6,7 +6,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="question : ${question.list}">
+    <tr th:each="question : ${questionList}">
         <td th:text="${question.subject}"></td>
         <td th:text="${question.createDate}"></td>
     </tr>
