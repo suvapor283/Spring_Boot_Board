@@ -1,7 +1,7 @@
 package com.mysite.sbb;
 
 import com.mysite.sbb.answer.Answer;
-import com.mysite.sbb.answer.AnswerREpository;
+import com.mysite.sbb.answer.AnswerRepository;
 import com.mysite.sbb.question.Question;
 import com.mysite.sbb.question.QuestionRepository;
 import jakarta.transaction.Transactional;
@@ -20,7 +20,7 @@ class SbbApplicationTests {
     private QuestionRepository questionRepository;
 
     @Autowired
-    private AnswerREpository answerREpository;
+    private AnswerRepository answerREpository;
 
     @Test
         // 이 메서드가 테스트 메서드임을 의미
