@@ -13,6 +13,6 @@ public class QuestionForm {
     @Size(max = 200)  // 200바이트 보다 큰 값이 입력되면 오류 발생
     private String subject;
 
-    @NotEmpty(message = "제목은 필수항목입니다.")
+    @NotEmpty(message = "내용은 필수항목입니다.")
     private String content;
 }
