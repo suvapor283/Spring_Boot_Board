@@ -4,6 +4,7 @@ import com.mysite.sbb.answer.Answer;
 import com.mysite.sbb.answer.AnswerRepository;
 import com.mysite.sbb.question.Question;
 import com.mysite.sbb.question.QuestionRepository;
+import com.mysite.sbb.question.QuestionService;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ class SbbApplicationTests {
 
     @Autowired
     private AnswerRepository answerREpository;
+
+    @Autowired
+    private QuestionService questionService;
 
     @Test
         // 이 메서드가 테스트 메서드임을 의미
@@ -109,5 +113,14 @@ class SbbApplicationTests {
         Question q = oq.get();
 
         List<Answer> answerList = q.getAnswerList();
+    }
+
+    @Test
+    void testJpa12() {
+        for (int i = 1; i <= 300; i++) {
+            String subject = String.format("테스트 데이터입니다:[%03d]", i);
+            String content = "내용무";
+            this.questionService.create(subject, content);
+        }
     }
 }

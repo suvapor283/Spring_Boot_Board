@@ -2,6 +2,9 @@ package com.mysite.sbb.question;
 
 import com.mysite.sbb.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -39,5 +42,11 @@ public class QuestionService {
         }
 
         throw new DataNotFoundException("question not found");
+    }
+
+    public Page<Question> getList(int page) {
+        Pageable pageable = PageRequest.of(page, 10);
+
+        return this.questionRepository.findAll(pageable);
     }
 }

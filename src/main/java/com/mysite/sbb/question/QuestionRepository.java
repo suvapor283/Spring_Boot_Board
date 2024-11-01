@@ -1,5 +1,7 @@
 package com.mysite.sbb.question;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -14,4 +16,7 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
     // 특정 문자열을 포함한 데이터를 찾기 위해서 LIKE 연산자 사용
     List<Question> findBySubjectLike(String subject);
+
+    @Override
+    Page<Question> findAll(Pageable pageable);
 }
