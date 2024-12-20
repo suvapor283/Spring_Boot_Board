@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 public class QuestionForm {
 
-    @NotEmpty(message = "제목은 필수항목입니다.")  // null 또는 빈 문자열을 허용하지 않음  // message : 검증에 실패할 경우 화면에 띄울 오류 메세지
-    @Size(max = 200)  // 200바이트 보다 큰 값이 입력되면 오류 발생
+    @NotEmpty(message = "제목은 필수항목입니다.")
+    @Size(max = 200)
     private String subject;
 
     @NotEmpty(message = "내용은 필수항목입니다.")

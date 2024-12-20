@@ -14,10 +14,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-@SpringBootTest  // 이 클래스가 스프링부트의 테스트 클래스임을 의미
+@SpringBootTest
 class SbbApplicationTests {
 
-    @Autowired  // 의존성 주입 : 스프링이 객체를 대신 생성해서 주입하는 기법
+    @Autowired
     private QuestionRepository questionRepository;
 
     @Autowired
@@ -27,7 +27,6 @@ class SbbApplicationTests {
     private QuestionService questionService;
 
     @Test
-        // 이 메서드가 테스트 메서드임을 의미
     void testJpa() {
         Question q1 = new Question();
         q1.setSubject("sbb가 무엇인가요?");
@@ -50,8 +49,8 @@ class SbbApplicationTests {
 
     @Test
     void testJpa3() {
-        Optional<Question> oq = this.questionRepository.findById(1);  // Optional은 null 값을 유연하게 처리하기 위한 클래스
-        if (oq.isPresent()) {  // Optional은 isPresent() 메서드로 값이 존재하는지 확인할 수 있음
+        Optional<Question> oq = this.questionRepository.findById(1);
+        if (oq.isPresent()) {
             Question q = oq.get();
         }
     }
@@ -106,7 +105,7 @@ class SbbApplicationTests {
         Answer a = oa.get();
     }
 
-    @Transactional  // 이 메서드가 종료될 때까지 DB 세션이 유지
+    @Transactional
     @Test
     void testJpa11() {
         Optional<Question> oq = this.questionRepository.findById(2);

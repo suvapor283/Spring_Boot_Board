@@ -14,9 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-// 서비스 클래스가 필요한 이유
-// 1. 복잡한 코드를 모듈화할 수 있다.
-// 2. 엔티티 객체를 DTO 객체로 변환할 수 있다.
 @Service
 @RequiredArgsConstructor
 public class QuestionService {
@@ -38,6 +35,14 @@ public class QuestionService {
         return this.questionRepository.findAll();
     }
 
+    public Page<Question> getList(int page) {
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate"));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
+
+        return this.questionRepository.findAll(pageable);
+    }
+
     public Question getQuestion(Integer id) {
         Optional<Question> questionOptional = this.questionRepository.findById(id);
 
@@ -48,11 +53,11 @@ public class QuestionService {
         throw new DataNotFoundException("question not found");
     }
 
-    public Page<Question> getList(int page) {
-        List<Sort.Order> sorts = new ArrayList<>();
-        sorts.add(Sort.Order.desc("createDate"));
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
+    public void modify(Question question, String subject, String content) {
+        question.setSubject(subject);
+        question.setContent(content);
+        question.setModifyDate(LocalDateTime.now());
 
-        return this.questionRepository.findAll(pageable);
+        this.questionRepository.save(question);
     }
 }

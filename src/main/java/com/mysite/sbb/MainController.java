@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
 
     @GetMapping("/sbb")
-    @ResponseBody  // @ResponsBody를 생략시 리턴 된 이름의 템플릿 파일을 찾음
+    @ResponseBody
     public String index() {
 
         return "안녕하세요 SBB에 오신 것을 환영합니다.";

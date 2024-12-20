@@ -22,7 +22,9 @@ public class Answer {
 
     private LocalDateTime createDate;
 
-    @ManyToOne  // @ManyToOne : N:1 관계, 외래키 관계 생성
+    private LocalDateTime modifyDate;
+
+    @ManyToOne
     private Question question;
 
     @ManyToOne
