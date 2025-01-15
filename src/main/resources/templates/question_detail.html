@@ -37,7 +37,13 @@
     <!-- 답변 갯수 표시 -->
     <h5 class="border-bottom my-3 py-2"
         th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h5>
-
+    <span>
+        답변 정렬:
+    </span>
+    <a href="javascript:void(0);" class="ordering btn btn-sm btn-outline-secondary"
+       th:data-uri="@{|/question/detail/${question.id}?ans-ordering=recommend|}" th:text="추천순"></a>
+    <a href="javascript:void(0);" class="ordering btn btn-sm btn-outline-secondary"
+       th:data-uri="@{|/question/detail/${question.id}?ans-ordering=time|}" th:text="시간순"></a>
     <!-- 답변 페이징 시작 -->
     <div class="card my-3" th:each="answer, loop : ${ans_paging}">
         <a th:id="|answer_${answer.id}|"></a>
@@ -124,5 +130,12 @@
             };
         });
     });
+
+    const order_elements = document.getElementsByClassName('ordering');
+    Array.from(order_elements).forEach(function(element){
+        element.addEventListener('click', function(){
+            location.href = this.dataset.uri;
+        })
+    })
 </script>
 </html>

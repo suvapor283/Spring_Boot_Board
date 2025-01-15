@@ -2,7 +2,6 @@ package com.mysite.sbb.question;
 
 import com.mysite.sbb.answer.Answer;
 import com.mysite.sbb.answer.AnswerForm;
-import com.mysite.sbb.answer.AnswerRepository;
 import com.mysite.sbb.answer.AnswerService;
 import com.mysite.sbb.user.SiteUser;
 import com.mysite.sbb.user.UserService;
@@ -59,9 +58,9 @@ public class QuestionController {
     }
 
     @GetMapping("/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm, @RequestParam(value = "ans-page", defaultValue = "0") int answerPage) {
+    public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm, @RequestParam(value = "ans-page", defaultValue = "0") int answerPage, @RequestParam(value = "ans-ordering", defaultValue = "time") String answerOrderMethod) {
         Question question = this.questionService.getQuestion(id);
-        Page<Answer> answerPaging = this.answerService.getAnswerList(question, answerPage);
+        Page<Answer> answerPaging = this.answerService.getAnswerList(question, answerPage, answerOrderMethod);
         model.addAttribute("question", question);
         model.addAttribute("ans_paging", answerPaging);
 

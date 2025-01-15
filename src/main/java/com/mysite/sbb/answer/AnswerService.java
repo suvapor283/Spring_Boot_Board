@@ -4,7 +4,6 @@ import com.mysite.sbb.DataNotFoundException;
 import com.mysite.sbb.question.Question;
 import com.mysite.sbb.user.SiteUser;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.event.spi.SaveOrUpdateEvent;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -46,9 +45,15 @@ public class AnswerService {
         }
     }
 
-    public Page<Answer> getAnswerList(Question question, int page){
+    public Page<Answer> getAnswerList(Question question, int page, String answerOrderMethod) {
         List<Sort.Order> sorts = new ArrayList<>();
-        sorts.add(Sort.Order.desc("createDate"));
+
+        if (answerOrderMethod.startsWith("recommend")) {
+            sorts.add(Sort.Order.desc("voter"));
+        } else {
+            sorts.add(Sort.Order.desc("createDate"));
+        }
+
         Pageable pageable = PageRequest.of(page, 5, Sort.by(sorts));
 
         return this.answerRepository.findByQuestion(question, pageable);
